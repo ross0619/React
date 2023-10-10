@@ -1,10 +1,27 @@
-import React from 'react';
+'use client'
+import React, {useEffect, useState} from 'react';
 import Image from 'next/image'
 import './table.css';
+import {notFound} from 'next/navigation'
 
-  
-  export default function Table() {
-  
+async function getData(){
+    const res = await fetch('http://localhost:3000/API/Movie');
+    if(!res.ok) return notFound();
+    return res.json();
+
+}
+export default function Table(){
+
+    // const data = await getData();
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        async function fetchData() {
+            const responseData = await getData();
+            setData(responseData);
+        }
+        fetchData();
+    }, [])
+    
     return (
       <>
         <div className="table-responsive">
@@ -12,39 +29,23 @@ import './table.css';
                 <caption className="sr-only">Example responsive table with striped rows</caption>
                 <thead>
                     <tr>
-                        <td scope="col">&nbsp;</td>
-                        <th scope="col">Col 1</th>
-                        <th scope="col">Col 2</th>
-                        <th scope="col">Col 3</th>
-                        <th scope="col">Col 4</th>
-                        <th scope="col">Col 5</th>
+                        <th scope="col">Movie Title</th>
+                        <th scope="col">Director</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Release Date</th>
+                        <th scope="col">Rank</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">Row A</th>
-                        <td>A1</td>
-                        <td>A2</td>
-                        <td>A3</td>
-                        <td>A4</td>
-                        <td>A5</td>
+                {data.map((movie: any) => (
+                    <tr key={movie._id}>
+                        <td>{movie.MovieTitle}</td>
+                        <td>{movie.Director}</td>
+                        <td>{movie.Category}</td>
+                        <td>{movie.ReleaseDate}</td>
+                        <td>{movie.Rank}</td>
                     </tr>
-                    <tr>
-                        <th scope="row">Row B</th>
-                        <td>B1</td>
-                        <td>B2</td>
-                        <td>B3</td>
-                        <td>B4</td>
-                        <td>B5</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Row C</th>
-                        <td>C1</td>
-                        <td>C2</td>
-                        <td>C3</td>
-                        <td>C4</td>
-                        <td>C5</td>
-                    </tr>
+                ))}
                 </tbody>
             </table>
         </div>

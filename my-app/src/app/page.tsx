@@ -4,6 +4,7 @@ import NavigationHeader from '../components/NavigationHeader/NavigationHeader';
 import VertbarChart from '../components/vertBarChart/vertBarChart'
 import DoughNutChart from '@/components/DoughnutChart/Doughnut';
 import Profile from '@/components/Profile/Profile'
+import MovieForm from '@/components/MovieForm/MovieForm';
 
 
 const user = {

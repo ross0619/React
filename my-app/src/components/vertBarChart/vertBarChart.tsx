@@ -67,9 +67,9 @@ export default function vertBarChart() {
 
       <div>
       {!showChart ? (
-        <button onClick={handleShowButtonClick}>Show Vertical Bar Chart</button>
+        <button onClick={handleShowButtonClick} className='vertButton'>Show Vertical Bar Chart</button>
       ) : (
-        <button onClick={handleHideButtonClick}>Hide Vertical Bar Chart</button>
+        <button onClick={handleHideButtonClick} className='vertButton'>Hide Vertical Bar Chart</button>
       )}
       <div className='vertBarChart'>
         {showChart && <Bar options={options} data={data} />}

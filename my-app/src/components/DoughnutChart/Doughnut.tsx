@@ -46,9 +46,9 @@ export default function DoughNutChart() {
     return (
         <div>
             {!showChart ? (
-            <button onClick={handleShowButtonClick}>Show Dougnut Chart</button>
+            <button onClick={handleShowButtonClick} className='doughNutButton'>Show Dougnut Chart</button>
             ) : (
-            <button onClick={handleHideButtonClick}>Hide Doughnut Chart</button>
+            <button onClick={handleHideButtonClick} className='doughNutButton'>Hide Doughnut Chart</button>
             )}
             <div className='doughNutChart'>
                 {showChart && <Doughnut data={data} width={10} height={20}/>}
